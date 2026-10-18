@@ -1,90 +1,57 @@
-﻿/* ============================================================
-   LEXICON – DICTIONARY APP  |  style.css
-   
-   Table of Contents:
-   1.  CSS Custom Properties (Design Tokens)
-   2.  CSS Reset & Base
-   3.  Utility Classes
-   4.  Background & Layout
-   5.  Glass Card Mixin
-   6.  Header
-   7.  Search Section
-   8.  State Displays (Loading, Error)
-   9.  Result Section
-   10. Meanings & Definitions
-   11. Synonyms & Antonyms
-   12. Search History
-   13. Footer
-   14. Animations & Keyframes
-   15. Responsive Breakpoints
-   ============================================================ */
+﻿:root {
+  --clr-bg-start: #0a0a1a;
+  --clr-bg-end: #0d1a2e;
+  --clr-orb-1: #6c3fc5;
+  --clr-orb-2: #1a4fa0;
+  --clr-orb-3: #0e7ea8;
 
-/* ────────────────────────────────────────────
-   1. CSS Custom Properties
-   ──────────────────────────────────────────── */
-:root {
-  /* Palette */
-  --clr-bg-start:        #0a0a1a;
-  --clr-bg-end:          #0d1a2e;
-  --clr-orb-1:           #6c3fc5;
-  --clr-orb-2:           #1a4fa0;
-  --clr-orb-3:           #0e7ea8;
+  --clr-glass-bg: rgba(255, 255, 255, 0.06);
+  --clr-glass-border: rgba(255, 255, 255, 0.12);
+  --clr-glass-hover: rgba(255, 255, 255, 0.10);
 
-  --clr-glass-bg:        rgba(255, 255, 255, 0.06);
-  --clr-glass-border:    rgba(255, 255, 255, 0.12);
-  --clr-glass-hover:     rgba(255, 255, 255, 0.10);
+  --clr-accent: #7c6ff7;
+  --clr-accent-light: #a89ff9;
+  --clr-accent-glow: rgba(124, 111, 247, 0.35);
 
-  --clr-accent:          #7c6ff7;
-  --clr-accent-light:    #a89ff9;
-  --clr-accent-glow:     rgba(124, 111, 247, 0.35);
+  --clr-text-primary: #f0f0fc;
+  --clr-text-secondary: rgba(240, 240, 252, 0.65);
+  --clr-text-muted: rgba(240, 240, 252, 0.40);
 
-  --clr-text-primary:    #f0f0fc;
-  --clr-text-secondary:  rgba(240, 240, 252, 0.65);
-  --clr-text-muted:      rgba(240, 240, 252, 0.40);
+  --clr-success: #4ade80;
+  --clr-warning: #fb923c;
+  --clr-error: #f87171;
 
-  --clr-success:         #4ade80;
-  --clr-warning:         #fb923c;
-  --clr-error:           #f87171;
+  --clr-tag-noun: rgba(124, 111, 247, 0.20);
+  --clr-tag-verb: rgba(30, 180, 140, 0.20);
+  --clr-tag-adj: rgba(251, 146, 60, 0.20);
+  --clr-tag-adv: rgba(99, 179, 237, 0.20);
+  --clr-tag-default: rgba(255, 255, 255, 0.10);
 
-  --clr-tag-noun:        rgba(124, 111, 247, 0.20);
-  --clr-tag-verb:        rgba(30, 180, 140, 0.20);
-  --clr-tag-adj:         rgba(251, 146, 60, 0.20);
-  --clr-tag-adv:         rgba(99, 179, 237, 0.20);
-  --clr-tag-default:     rgba(255, 255, 255, 0.10);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 
-  /* Typography */
-  --font-sans:   'Inter', system-ui, sans-serif;
-  --font-serif:  'Playfair Display', Georgia, serif;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
 
-  /* Spacing */
-  --space-xs:   0.25rem;
-  --space-sm:   0.5rem;
-  --space-md:   1rem;
-  --space-lg:   1.5rem;
-  --space-xl:   2rem;
-  --space-2xl:  3rem;
-
-  /* Radius */
-  --radius-sm:   8px;
-  --radius-md:   14px;
-  --radius-lg:   20px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* Shadow */
   --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-  --shadow-btn:   0 4px 20px var(--clr-accent-glow);
-  --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-btn: 0 4px 20px var(--clr-accent-glow);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
 
-  /* Transition */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-fast: 160ms;
   --dur-base: 280ms;
   --dur-slow: 440ms;
 }
 
-/* ────────────────────────────────────────────
-   2. CSS Reset & Base
-   ──────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -109,7 +76,10 @@ body {
   overflow-x: hidden;
 }
 
-img, svg { display: block; }
+img,
+svg {
+  display: block;
+}
 
 button {
   font-family: inherit;
@@ -123,13 +93,15 @@ a {
   text-decoration: none;
   transition: color var(--dur-fast) var(--ease-out);
 }
-a:hover { color: var(--clr-text-primary); }
 
-ul { list-style: none; }
+a:hover {
+  color: var(--clr-text-primary);
+}
 
-/* ────────────────────────────────────────────
-   3. Utility Classes
-   ──────────────────────────────────────────── */
+ul {
+  list-style: none;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -142,9 +114,6 @@ ul { list-style: none; }
   border: 0;
 }
 
-/* ────────────────────────────────────────────
-   4. Background Orbs
-   ──────────────────────────────────────────── */
 .bg-orbs {
   position: fixed;
   inset: 0;
@@ -188,9 +157,6 @@ ul { list-style: none; }
   animation: orbFloat3 26s ease-in-out infinite alternate;
 }
 
-/* ────────────────────────────────────────────
-   5. Glass Card
-   ──────────────────────────────────────────── */
 .glass {
   background: var(--clr-glass-bg);
   backdrop-filter: blur(20px);
@@ -200,9 +166,6 @@ ul { list-style: none; }
   box-shadow: var(--shadow-glass);
 }
 
-/* ────────────────────────────────────────────
-   6. Layout Wrapper
-   ──────────────────────────────────────────── */
 .app-wrapper {
   max-width: 780px;
   margin: 0 auto;
@@ -212,9 +175,6 @@ ul { list-style: none; }
   gap: var(--space-xl);
 }
 
-/* ────────────────────────────────────────────
-   7. Header
-   ──────────────────────────────────────────── */
 .app-header {
   text-align: center;
   padding: var(--space-xl) 0 var(--space-sm);
@@ -252,17 +212,15 @@ ul { list-style: none; }
   font-weight: 300;
 }
 
-/* ────────────────────────────────────────────
-   8. Search Section
-   ──────────────────────────────────────────── */
 .search-section {
   animation: fadeSlideDown var(--dur-slow) var(--ease-out) 80ms both;
 }
 
 .search-card {
-  padding: var(--space-lg) var(--space-lg);
+  padding: var(--space-lg);
   transition: box-shadow var(--dur-base) var(--ease-out);
 }
+
 .search-card:focus-within {
   box-shadow: var(--shadow-glass), 0 0 0 2px var(--clr-accent);
 }
@@ -286,12 +244,18 @@ ul { list-style: none; }
   outline: none;
   transition: border-color var(--dur-fast) var(--ease-out),
               background var(--dur-fast) var(--ease-out);
-  /* Remove default search styling */
   -webkit-appearance: none;
   appearance: none;
 }
-.search-input::placeholder { color: var(--clr-text-muted); }
-.search-input::-webkit-search-cancel-button { display: none; }
+
+.search-input::placeholder {
+  color: var(--clr-text-muted);
+}
+
+.search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
 .search-input:focus {
   border-color: var(--clr-accent);
   background: rgba(255, 255, 255, 0.10);
@@ -311,14 +275,21 @@ ul { list-style: none; }
               box-shadow var(--dur-fast) var(--ease-out),
               filter var(--dur-fast) var(--ease-out);
 }
+
 .search-btn:hover {
   transform: translateY(-2px);
   filter: brightness(1.12);
   box-shadow: 0 6px 28px var(--clr-accent-glow);
 }
-.search-btn:active { transform: translateY(0) scale(0.95); }
 
-.search-icon { width: 20px; height: 20px; }
+.search-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
 
 .search-hint {
   margin-top: var(--space-sm);
@@ -326,6 +297,7 @@ ul { list-style: none; }
   color: var(--clr-text-muted);
   text-align: center;
 }
+
 .search-hint kbd {
   display: inline-block;
   padding: 1px 6px;
@@ -335,9 +307,6 @@ ul { list-style: none; }
   font-family: var(--font-sans);
 }
 
-/* ────────────────────────────────────────────
-   9. State Displays – Loading & Error
-   ──────────────────────────────────────────── */
 .state-display {
   display: flex;
   flex-direction: column;
@@ -347,29 +316,35 @@ ul { list-style: none; }
   text-align: center;
   animation: fadeIn var(--dur-base) var(--ease-out);
 }
-.state-display[hidden] { display: none; }
 
-/* Loader rings */
+.state-display[hidden] {
+  display: none;
+}
+
 .loader {
   position: relative;
   width: 56px;
   height: 56px;
 }
+
 .loader__ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   border: 3px solid transparent;
 }
+
 .loader__ring:nth-child(1) {
   border-top-color: var(--clr-accent);
   animation: spin 1.1s linear infinite;
 }
+
 .loader__ring:nth-child(2) {
   inset: 8px;
   border-right-color: var(--clr-accent-light);
   animation: spin 0.85s linear infinite reverse;
 }
+
 .loader__ring:nth-child(3) {
   inset: 16px;
   border-bottom-color: #e0c3fc;
@@ -381,35 +356,38 @@ ul { list-style: none; }
   font-size: 0.95rem;
 }
 
-/* Error */
-.error-icon  { font-size: 3.5rem; }
+.error-icon {
+  font-size: 3.5rem;
+}
+
 .error-title {
   font-family: var(--font-serif);
   font-size: 1.6rem;
   color: var(--clr-text-primary);
 }
+
 .error-message {
   color: var(--clr-error);
   font-size: 0.95rem;
   max-width: 340px;
 }
+
 .error-tip {
   color: var(--clr-text-muted);
   font-size: 0.85rem;
 }
 
-/* ────────────────────────────────────────────
-   10. Result Section
-   ──────────────────────────────────────────── */
 .result-section {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   animation: fadeSlideUp var(--dur-slow) var(--ease-out) both;
 }
-.result-section[hidden] { display: none; }
 
-/* Word Header */
+.result-section[hidden] {
+  display: none;
+}
+
 .word-header {
   display: flex;
   align-items: center;
@@ -418,7 +396,10 @@ ul { list-style: none; }
   padding: var(--space-xl);
 }
 
-.word-header__info { flex: 1; min-width: 0; }
+.word-header__info {
+  flex: 1;
+  min-width: 0;
+}
 
 .result-word {
   font-family: var(--font-serif);
@@ -441,7 +422,6 @@ ul { list-style: none; }
   letter-spacing: 0.03em;
 }
 
-/* Audio Button */
 .audio-btn {
   display: grid;
   place-items: center;
@@ -456,21 +436,30 @@ ul { list-style: none; }
               box-shadow var(--dur-fast) var(--ease-out),
               filter var(--dur-fast) var(--ease-out);
 }
-.audio-btn svg { width: 24px; height: 24px; }
-.audio-btn[hidden] { display: none; }
+
+.audio-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.audio-btn[hidden] {
+  display: none;
+}
+
 .audio-btn:hover {
   transform: scale(1.08);
   filter: brightness(1.12);
   box-shadow: 0 6px 28px var(--clr-accent-glow);
 }
-.audio-btn:active { transform: scale(0.94); }
+
+.audio-btn:active {
+  transform: scale(0.94);
+}
+
 .audio-btn.playing {
   animation: pulse 0.8s ease-in-out infinite alternate;
 }
 
-/* ────────────────────────────────────────────
-   11. Meanings & Definitions
-   ──────────────────────────────────────────── */
 .meanings-container {
   display: flex;
   flex-direction: column;
@@ -488,6 +477,7 @@ ul { list-style: none; }
   transition: border-color var(--dur-base) var(--ease-out),
               box-shadow var(--dur-base) var(--ease-out);
 }
+
 .meaning-card:hover {
   border-color: rgba(124, 111, 247, 0.35);
   box-shadow: var(--shadow-card), 0 0 0 1px rgba(124, 111, 247, 0.15);
@@ -505,12 +495,34 @@ ul { list-style: none; }
   border: 1px solid rgba(255,255,255,0.12);
 }
 
-/* Part-of-speech colour coding */
-.pos-tag[data-pos="noun"]        { background: var(--clr-tag-noun); color: #a89ff9; border-color: rgba(124,111,247,0.3); }
-.pos-tag[data-pos="verb"]        { background: var(--clr-tag-verb); color: #34d399; border-color: rgba(30,180,140,0.3); }
-.pos-tag[data-pos="adjective"]   { background: var(--clr-tag-adj);  color: #fdba74; border-color: rgba(251,146,60,0.3); }
-.pos-tag[data-pos="adverb"]      { background: var(--clr-tag-adv);  color: #93c5fd; border-color: rgba(99,179,237,0.3); }
-.pos-tag[data-pos]               { background: var(--clr-tag-default); color: var(--clr-text-secondary); }
+.pos-tag[data-pos="noun"] {
+  background: var(--clr-tag-noun);
+  color: #a89ff9;
+  border-color: rgba(124,111,247,0.3);
+}
+
+.pos-tag[data-pos="verb"] {
+  background: var(--clr-tag-verb);
+  color: #34d399;
+  border-color: rgba(30,180,140,0.3);
+}
+
+.pos-tag[data-pos="adjective"] {
+  background: var(--clr-tag-adj);
+  color: #fdba74;
+  border-color: rgba(251,146,60,0.3);
+}
+
+.pos-tag[data-pos="adverb"] {
+  background: var(--clr-tag-adv);
+  color: #93c5fd;
+  border-color: rgba(99,179,237,0.3);
+}
+
+.pos-tag[data-pos] {
+  background: var(--clr-tag-default);
+  color: var(--clr-text-secondary);
+}
 
 .definitions-list {
   display: flex;
@@ -540,7 +552,9 @@ ul { list-style: none; }
   margin-top: 2px;
 }
 
-.def-body { flex: 1; }
+.def-body {
+  flex: 1;
+}
 
 .def-text {
   color: var(--clr-text-primary);
@@ -557,12 +571,15 @@ ul { list-style: none; }
   font-style: italic;
   line-height: 1.55;
 }
-.def-example::before { content: '"'; }
-.def-example::after  { content: '"'; }
 
-/* ────────────────────────────────────────────
-   12. Synonyms & Antonyms
-   ──────────────────────────────────────────── */
+.def-example::before {
+  content: '"';
+}
+
+.def-example::after {
+  content: '"';
+}
+
 .relations-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -578,7 +595,10 @@ ul { list-style: none; }
   padding: var(--space-lg);
   box-shadow: var(--shadow-card);
 }
-.relation-card[hidden] { display: none; }
+
+.relation-card[hidden] {
+  display: none;
+}
 
 .relation-title {
   font-size: 0.75rem;
@@ -587,8 +607,14 @@ ul { list-style: none; }
   letter-spacing: 0.1em;
   margin-bottom: var(--space-md);
 }
-.relation-title--syn { color: var(--clr-success); }
-.relation-title--ant { color: var(--clr-warning); }
+
+.relation-title--syn {
+  color: var(--clr-success);
+}
+
+.relation-title--ant {
+  color: var(--clr-warning);
+}
 
 .relation-tags {
   display: flex;
@@ -612,6 +638,7 @@ ul { list-style: none; }
   color: var(--clr-success);
   border-color: rgba(74, 222, 128, 0.25);
 }
+
 .relation-tag--syn:hover {
   background: rgba(74, 222, 128, 0.20);
   transform: translateY(-2px);
@@ -622,18 +649,19 @@ ul { list-style: none; }
   color: var(--clr-warning);
   border-color: rgba(251, 146, 60, 0.25);
 }
+
 .relation-tag--ant:hover {
   background: rgba(251, 146, 60, 0.20);
   transform: translateY(-2px);
 }
 
-/* ────────────────────────────────────────────
-   13. Search History
-   ──────────────────────────────────────────── */
 .history-section {
   animation: fadeSlideUp var(--dur-slow) var(--ease-out) both;
 }
-.history-section[hidden] { display: none; }
+
+.history-section[hidden] {
+  display: none;
+}
 
 .history-header {
   display: flex;
@@ -665,6 +693,7 @@ ul { list-style: none; }
               border-color var(--dur-fast) var(--ease-out);
   letter-spacing: 0.04em;
 }
+
 .clear-history-btn:hover {
   background: rgba(248, 113, 113, 0.18);
   border-color: rgba(248, 113, 113, 0.55);
@@ -694,21 +723,20 @@ ul { list-style: none; }
               border-color var(--dur-fast) var(--ease-out),
               transform var(--dur-fast) var(--ease-out);
 }
+
 .history-item:hover {
   background: var(--clr-glass-hover);
   color: var(--clr-text-primary);
   border-color: rgba(124, 111, 247, 0.40);
   transform: translateY(-2px);
 }
+
 .history-item::before {
   content: '↩';
   font-size: 0.75rem;
   opacity: 0.6;
 }
 
-/* ────────────────────────────────────────────
-   14. Footer
-   ──────────────────────────────────────────── */
 .app-footer {
   text-align: center;
   padding: var(--space-sm) 0 var(--space-xl);
@@ -716,82 +744,130 @@ ul { list-style: none; }
   color: var(--clr-text-muted);
 }
 
-/* ────────────────────────────────────────────
-   15. Keyframes
-   ──────────────────────────────────────────── */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeSlideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-  from { box-shadow: 0 0 0 0 var(--clr-accent-glow); }
-  to   { box-shadow: 0 0 0 14px transparent; }
+  from {
+    box-shadow: 0 0 0 0 var(--clr-accent-glow);
+  }
+
+  to {
+    box-shadow: 0 0 0 14px transparent;
+  }
 }
 
 @keyframes orbFloat1 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(60px, 40px) scale(1.08); }
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(60px, 40px) scale(1.08);
+  }
 }
 
 @keyframes orbFloat2 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(-50px, -60px) scale(1.05); }
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-50px, -60px) scale(1.05);
+  }
 }
 
 @keyframes orbFloat3 {
-  from { transform: translate(-50%, -50%) scale(1); }
-  to   { transform: translate(-52%, -47%) scale(1.12); }
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-52%, -47%) scale(1.12);
+  }
 }
 
-/* ────────────────────────────────────────────
-   16. Responsive Breakpoints
-   ──────────────────────────────────────────── */
-
-/* Tablet */
 @media (max-width: 640px) {
   .app-wrapper {
     padding: var(--space-lg) var(--space-md) var(--space-2xl);
     gap: var(--space-lg);
   }
 
-  .logo__text  { font-size: 2rem; }
-  .search-card { padding: var(--space-md); }
+  .logo__text {
+    font-size: 2rem;
+  }
+
+  .search-card {
+    padding: var(--space-md);
+  }
 
   .word-header {
     flex-direction: row;
     padding: var(--space-lg);
   }
 
-  .meaning-card { padding: var(--space-lg); }
+  .meaning-card {
+    padding: var(--space-lg);
+  }
 
   .relations-container {
     grid-template-columns: 1fr;
   }
 }
 
-/* Mobile */
 @media (max-width: 400px) {
-  .logo__text { font-size: 1.7rem; }
-  .logo__icon { font-size: 1.6rem; }
+  .logo__text {
+    font-size: 1.7rem;
+  }
 
-  .search-input { font-size: 0.95rem; }
+  .logo__icon {
+    font-size: 1.6rem;
+  }
 
-  .result-word  { font-size: 2rem; }
+  .search-input {
+    font-size: 0.95rem;
+  }
+
+  .result-word {
+    font-size: 2rem;
+  }
 
   .audio-btn {
     width: 44px;
@@ -799,7 +875,6 @@ ul { list-style: none; }
   }
 }
 
-/* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
