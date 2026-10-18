@@ -8,7 +8,7 @@ Lexicon is a sleek, glassmorphism-styled dictionary web app. Search any English 
 
 Show Image
 
-{screenshot.png}
+screenshot.png
 
 ✨ Features
 
